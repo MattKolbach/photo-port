@@ -4,7 +4,10 @@ import About from './components/About';
 import Gallery from './components/Gallery';
 import ContactForm from './components/Contact';
 
+
+
 function App() {
+    const [contactSelected, setContactSelected] = useState(false);
     const [categories] = useState([
         {
             name: 'commercial',
@@ -32,13 +35,18 @@ function App() {
                 categories={categories}
                 setCurrentCategory={setCurrentCategory}
                 currentCategory={currentCategory}
+                contactSelected={contactSelected}
+                setContactSelected={setContactSelected}
             ></Nav>
             <main>
-                <ContactForm></ContactForm>
-                <div>
+                {!contactSelected ? (
+                    <>
                     <Gallery currentCategory={currentCategory}></Gallery>
                     <About></About>
-                </div>
+                    </>
+                ):(
+                    <ContactForm></ContactForm>
+                )}
             </main>
         </div>
     );
